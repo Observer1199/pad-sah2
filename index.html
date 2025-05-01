@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <title>Chrome'da Açılıyor...</title>
+  <script>
+    function openInChrome() {
+      var url = "https://www.kazancortagi1.com/links/?btag=2337600";
+      var ua = navigator.userAgent.toLowerCase();
+
+      if (ua.indexOf("android") > -1) {
+        // Android: Chrome ile açmayı dene
+        window.location.href = "intent://www.kazancortagi1.com/links/?btag=2337600#Intent;scheme=https;package=com.android.chrome;end;";
+      } else if (ua.indexOf("iphone") > -1 || ua.indexOf("ipad") > -1) {
+        // iOS: Eğer Chrome yüklüyse, özel URL şeması ile açmayı dene
+        window.location.href = "googlechrome://www.kazancortagi1.com/links/?btag=2337600".replace("https://", "googlechrome://").replace("http://", "googlechrome://");
+
+        // Chrome yüklü değilse fallback olarak normal URL'ye yönlendir (1 saniye sonra)
+        setTimeout(function() {
+          window.location.href = url;
+        }, 1000);
+      } else {
+        // Diğer cihazlar: normal yönlendirme
+        window.location.href = url;
+      }
+    }
+
+    window.onload = function () {
+      setTimeout(openInChrome, 100);
+    };
+  </script>
+</head>
+<body>
+  <p style="font-family: sans-serif; font-size: 1.2em;">Bağlantı Chrome'da açılıyor... Lütfen bekleyin.</p>
+</body>
+</html>
